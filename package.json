@@ -1,0 +1,41 @@
+{
+  "name": "putil-merge",
+  "description": "Lightweight solution for merging multiple objects into one. Also it supports deep merge and deep clone",
+  "version": "1.0.0",
+  "author": "Panates Ltd.",
+  "contributors": [
+    "Eray Hanoglu <e.hanoglu@panates.com>"
+  ],
+  "license": "MIT",
+  "repository": "panates/putil-merge",
+  "main": "lib/merge.js",
+  "keywords": [
+    "javascript",
+    "merge",
+    "object"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.8.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2"
+  },
+  "engines": {
+    "node": ">= 6.0"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/"
+  ],
+  "scripts": {
+    "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --reporter dot --check-leaks test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/support/env --reporter spec --check-leaks test/"
+  }
+}
