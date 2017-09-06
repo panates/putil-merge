@@ -89,4 +89,16 @@ describe('merge', function() {
     done();
   });
 
+  it('test merge.init({filter: fn})', function(done) {
+    const a = {a: 1, b: 2, c: 3};
+    const b = {a: 10, b: 3, c: 13};
+    let o = merge.init({
+      filter: (k, v) => {
+        return v < 10;
+      }
+    })(a, b);
+    assert.deepEqual(o, {a: 1, b: 3, c: 3});
+    done();
+  });
+
 });
