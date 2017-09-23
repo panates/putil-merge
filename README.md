@@ -36,13 +36,21 @@ Etc:
 
 `merge(target, source)`
 
+
+Merge source object over target object with deep operation:
+
 `merge.deep(target, source)`
+
+Merge source object over target object with deep operation and cloning.
 
 `merge.deep.clone(target, source)`
 
 `merge.clone.deep(target, source)`
 
+Merge source object descriptors over target object:
 `merge.descriptor(target, source)`
+
+Merge source object descriptors over target object with deep operation:
 
 `merge.deep.descriptor(target, [source1, source2])`
 
@@ -60,23 +68,30 @@ Etc:
 
 ## Examples
 
+Merge source object over target object:
+
 ```js
-const a = {l1a: 1, l1b: '2', l1d: {l2a: 1}};
-const b = {l1b: 'b', l1c: 3, l1d: {l2b: {l3a: '2'}}, l1e: [1, 2, 3, 4]};
+const a = {prm1: 1, prm2: 2};
+const b = {prm1: 11, prm3: [1, 2, 3, 4]};
 var merged = merge(a, b);
-console.log(merged);
 ```
 
+Clone any object:
+
+```js
+const a = {prm1: 1, prm2: { prm3: 3}};
+var cloned = merge.clone(a);
+var deepCloned = merge.deep.clone(a);
+```
+
+Merge source object over target object with custom filtering:
 ```js
 var a = {id: 1};
 var b = {name: 'John', surname: 'Wick'};
 var merged = merge.deep.filter(function(o,k,v){
   return k === 'name';  
 })(target, source);
-assert.deepEqual(merged, {id: 1, name: 'John'});
 ```
-
-
 
 ## Node Compatibility
 
