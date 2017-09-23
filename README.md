@@ -7,42 +7,80 @@
 [![Dependencies][dependencies-image]][dependencies-url]
 [![DevDependencies][devdependencies-image]][devdependencies-url]
 
-Lightweight solution for merging multiple objects into one. Also it supports deep merge
+A 'swiss army knife' solution for merging multiple objects into one. It supports deep merge, cloning objects, copying descriptors and filtering.
 
 ## Installation
 
-  - `npm install putil-merge --save`
+`$ npm install putil-merge --save`
+
 
 ## Usage
 
-`merge(target, ...source)`
+`merge([config], target, [source])`
 
-Combines source objects with the target object without deep operation. Also it copies references instead of cloning.
+- config [`Object`]
+    - deep [`Boolean`]: If true, it performs deep merge operation.
+    - clone [`Boolean`]: If true, it clones objects except setting references
+    - descriptor [`Boolean`]: If true, it copies descriptors
+    - filter [`Function(obj, key, value)`]
+- target [`Object`]
+- source [`Object|Array<Object>`]
 
+## Sequential calling
 
-`merge.deep(target, ...source)`
+It supports sequential calling style.
 
-Combines source objects with the target object with deep operation. Also it copies references instead of cloning.
+`merge.(option).(option)...(target, source)`
 
-`merge.clone(target, ...source)`
+Etc:
 
-Combines source objects with the target object without deep operation. Also it clones values.
+`merge(target, source)`
 
-`merge.deepClone(target, ...source)`
+`merge.deep(target, source)`
 
-Combines source objects with the target object with deep operation. Also it clones values.
+`merge.deep.clone(target, source)`
 
- 
+`merge.clone.deep(target, source)`
 
-```javascript
+`merge.descriptor(target, source)`
+
+`merge.deep.descriptor(target, [source1, source2])`
+
+`merge.clone.descriptor(target, source)`
+
+`merge.deep.clone.descriptor(target, [source1, source2])`
+
+`merge.deep.clone.descriptor(target, source)`
+
+`merge.clone.deep.descriptor(target, source)`
+
+`merge.descriptor.clone.deep(target, source)`
+
+`merge.descriptor.filter(filterfn)(target, source)`
+
+## Examples
+
+```js
 const a = {l1a: 1, l1b: '2', l1d: {l2a: 1}};
 const b = {l1b: 'b', l1c: 3, l1d: {l2b: {l3a: '2'}}, l1e: [1, 2, 3, 4]};
-let o = merge(a, b);
+var merged = merge(a, b);
+console.log(merged);
 ```
+
+```js
+var a = {id: 1};
+var b = {name: 'John', surname: 'Wick'};
+var merged = merge.deep.filter(function(o,k,v){
+  return k === 'name';  
+})(target, source);
+assert.deepEqual(merged, {id: 1, name: 'John'});
+```
+
+
 
 ## Node Compatibility
 
-  - node `>= 6.x`;
+  - node `>= 0.10`;
   
 ### License
 [MIT](LICENSE)
