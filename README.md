@@ -36,21 +36,13 @@ Etc:
 
 `merge(target, source)`
 
-
-Merge source object over target object with deep operation:
-
 `merge.deep(target, source)`
-
-Merge source object over target object with deep operation and cloning.
 
 `merge.deep.clone(target, source)`
 
 `merge.clone.deep(target, source)`
 
-Merge source object descriptors over target object:
 `merge.descriptor(target, source)`
-
-Merge source object descriptors over target object with deep operation:
 
 `merge.deep.descriptor(target, [source1, source2])`
 
