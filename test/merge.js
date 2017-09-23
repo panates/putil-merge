@@ -105,4 +105,12 @@ describe('merge', function() {
     done();
   });
 
+  it('test merge to function object', function(done) {
+    const a = function() {};
+    const b = {a: 11};
+    var o = merge(a, b);
+    assert.equal(o.a, 11);
+    done();
+  });
+
 });
