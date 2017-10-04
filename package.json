@@ -16,11 +16,11 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "^8.0.0",
-    "eslint": "^4.7.2",
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.8.0",
     "eslint-config-google": "^0.9.1",
     "istanbul": "^0.4.5",
-    "mocha": "^3.5.3"
+    "mocha": "^4.0.0"
   },
   "engines": {
     "node": ">= 0.10"
