@@ -88,6 +88,20 @@ describe('merge', function() {
     done();
   });
 
+  it('test defaults', function(done) {
+    const a = {a: 1, b: '2', c: {a: 1}};
+    const b = {a: 2, d: 4};
+    var o = merge.defaults(a, b);
+    assert.deepEqual(o, {
+          a: 1,
+          b: '2',
+          c: {a: 1},
+          d: 4
+        }
+    );
+    done();
+  });
+
   it('test filter', function(done) {
     const a = {
       a: 1,
