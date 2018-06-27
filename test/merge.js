@@ -7,7 +7,7 @@ describe('merge', function() {
   it('test merge()', function(done) {
     const a = {l1a: 1, l1b: '2', l1d: {l2a: 1}};
     const b = {l1b: 'b', l1c: 3, l1d: {l2b: {l3a: '2'}}, l1e: [1, 2, 3, 4]};
-    var o = merge(a, b);
+    let o = merge(a, b);
     assert.deepEqual(o, {
           l1a: 1,
           l1b: 'b',
@@ -24,7 +24,7 @@ describe('merge', function() {
   it('test deep', function(done) {
     const a = {l1a: 1, l1b: '2', l1d: {l2a: 1}};
     const b = {l1b: 'b', l1c: 3, l1d: {l2b: {l3a: '2'}}, l1e: [1, 2, 3, 4]};
-    var o = merge.deep(a, b);
+    let o = merge.deep(a, b);
     assert.deepEqual(o, {
           l1a: 1,
           l1b: 'b',
@@ -41,7 +41,7 @@ describe('merge', function() {
   it('test clone', function(done) {
     const a = {l1a: 1, l1b: '2', l1d: {l2a: 1}};
     const b = {l1b: 'b', l1c: 3, l1d: {l2b: {l3a: '2'}}, l1e: [1, 2, 3, 4]};
-    var o = merge.clone(a, b);
+    let o = merge.clone({}, a, b);
     assert.deepEqual(o, {
           l1a: 1,
           l1b: 'b',
@@ -58,7 +58,7 @@ describe('merge', function() {
   it('test deep+clone', function(done) {
     const a = {l1a: 1, l1b: '2', l1d: {l2a: 1}};
     const b = {l1b: 'b', l1c: 3, l1d: {l2b: {l3a: '2'}}, l1e: [1, 2, 3, 4]};
-    var o = merge.deep.clone(a, b);
+    let o = merge.deep.clone({}, a, b);
     assert.deepEqual(o, {
           l1a: 1,
           l1b: 'b',
@@ -82,8 +82,8 @@ describe('merge', function() {
       enumerable: true
     };
     Object.defineProperty(b, 'b1', d1);
-    var o = merge.descriptor(a, b);
-    var d2 = Object.getOwnPropertyDescriptor(a, 'b1');
+    let o = merge.descriptor(a, b);
+    let d2 = Object.getOwnPropertyDescriptor(a, 'b1');
     assert.deepEqual(d1, d2);
     done();
   });
@@ -91,7 +91,7 @@ describe('merge', function() {
   it('test defaults', function(done) {
     const a = {a: 1, b: '2', c: {a: 1}};
     const b = {a: 2, d: 4};
-    var o = merge.defaults(a, b);
+    let o = merge.defaults(a, b);
     assert.deepEqual(o, {
           a: 1,
           b: '2',
@@ -112,7 +112,7 @@ describe('merge', function() {
       d: 4
     };
 
-    var o = merge.filter(function(o, k, v) {
+    let o = merge.filter(function(o, k, v) {
       return k === 'd';
     })(a, b);
     assert.deepEqual(o, {a: 1, b: 2, d: 4});
@@ -122,7 +122,7 @@ describe('merge', function() {
   it('test merge to function object', function(done) {
     const a = function() {};
     const b = {a: 11};
-    var o = merge(a, b);
+    let o = merge(a, b);
     assert.equal(o.a, 11);
     done();
   });
