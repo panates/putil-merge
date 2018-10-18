@@ -4,7 +4,6 @@
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
-[![Dependencies][dependencies-image]][dependencies-url]
 [![DevDependencies][devdependencies-image]][devdependencies-url]
 
 A 'swiss army knife' solution for merging multiple objects into one. It supports deep merge, cloning objects, copying descriptors and filtering.
@@ -100,11 +99,5 @@ var merged = merge.deep.filter(function(o,k,v){
 [coveralls-url]: https://coveralls.io/r/panates/putil-merge
 [downloads-image]: https://img.shields.io/npm/dm/putil-merge.svg
 [downloads-url]: https://npmjs.org/package/putil-merge
-[gitter-image]: https://badges.gitter.im/panates/putil-merge.svg
-[gitter-url]: https://gitter.im/panates/putil-merge?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[dependencies-image]: https://david-dm.org/panates/putil-merge/status.svg
-[dependencies-url]:https://david-dm.org/panates/putil-merge
 [devdependencies-image]: https://david-dm.org/panates/putil-merge/dev-status.svg
 [devdependencies-url]:https://david-dm.org/panates/putil-merge?type=dev
-[quality-image]: http://npm.packagequality.com/shield/putil-merge.png
-[quality-url]: http://packagequality.com/#?package=putil-merge
