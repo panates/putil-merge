@@ -83,7 +83,7 @@ describe('merge', function() {
     };
     Object.defineProperty(b, 'b1', d1);
     let o = merge.descriptor(a, b);
-    let d2 = Object.getOwnPropertyDescriptor(a, 'b1');
+    let d2 = Object.getOwnPropertyDescriptor(o, 'b1');
     assert.deepEqual(d1, d2);
     done();
   });
@@ -93,7 +93,7 @@ describe('merge', function() {
     const b = {a: 2, d: 4};
     let o = merge.defaults(a, b);
     assert.deepEqual(o, {
-          a: 1,
+          a: 2,
           b: '2',
           c: {a: 1},
           d: 4
@@ -112,7 +112,7 @@ describe('merge', function() {
       d: 4
     };
 
-    let o = merge.filter(function(o, k, v) {
+    let o = merge.filter(function(o, k) {
       return k === 'd';
     })(a, b);
     assert.deepEqual(o, {a: 1, b: 2, d: 4});
