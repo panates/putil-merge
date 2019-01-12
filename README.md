@@ -6,87 +6,119 @@
 [![Test Coverage][coveralls-image]][coveralls-url]
 [![DevDependencies][devdependencies-image]][devdependencies-url]
 
-A 'swiss army knife' solution for merging multiple objects into one. It supports deep merge, cloning objects, copying descriptors and filtering.
+A 'swiss army knife' solution for merging two or more objects. It supports deep merge, cloning properties, copying descriptors and filtering.
 
 ## Installation
 
 `$ npm install putil-merge --save`
 
+## Table of contents
 
-## Usage
+- [merge()](#merge)
+- [merge.all()](#mergeall)
 
-`merge([config], target, [source])`
 
-- config [`Object`]
-    - deep [`Boolean`]: If true, it performs deep merge operation.
-    - clone [`Boolean`]: If true, it clones objects except setting references
-    - descriptor [`Boolean`]: If true, it copies descriptors
-    - filter [`Function(obj, key, value)`]
-- target [`Object`]
-- source [`Object|Array<Object>`]
+## Merge
 
-## Sequential calling
+`merge(target, source[, options])`
 
-It supports sequential calling style.
+- `target:object`:
+- `source:object`:
+- `options:object` 
+    - `deep:boolean` (optional): If true, it performs deep merge operation. **Default:** `false`
+    - `clone:boolean` (optional): If true, clones object properties rather than assigning references.  **Default:** `false`
+    - `descriptor:boolean`(optional): If true, copies property descriptors.  **Default:** `false`
+    - `filter:function` (optional): A callback function to test if source property will be merged to target.
+    - `arrayMerge:boolean|function` (optional): If true, it combines array values. It this is a function, result of call will be assigned to target.
 
-`merge.(option).(option)...(target, source)`
+**Copying source properties to target object**
 
-Etc:
-
-`merge(target, source)`
-
-`merge.deep(target, source)`
-
-`merge.deep.clone(target, source)`
-
-`merge.clone.deep(target, source)`
-
-`merge.descriptor(target, source)`
-
-`merge.deep.descriptor(target, [source1, source2])`
-
-`merge.clone.descriptor(target, source)`
-
-`merge.deep.clone.descriptor(target, [source1, source2])`
-
-`merge.deep.clone.descriptor(target, source)`
-
-`merge.clone.deep.descriptor(target, source)`
-
-`merge.descriptor.clone.deep(target, source)`
-
-`merge.descriptor.filter(filterfn)(target, source)`
-
-## Examples
-
-Merge source object over target object:
-
-```js
-const a = {prm1: 1, prm2: 2};
-const b = {prm1: 11, prm3: [1, 2, 3, 4]};
-var merged = merge(a, b);
+```javascript
+const a = {x: 1, y: 2};
+const b = {x: {}, z: [1, 2, 3, 4]};
+const merged = merge(a, b);
+assert(merged.x===b.x); // References copied
+assert(merged.z===b.z); // References copied
 ```
 
-Clone any object:
+**Cloning source properties to target object**
 
 ```js
-const a = {prm1: 1, prm2: { prm3: 3}};
-var cloned = merge.clone(a);
-var deepCloned = merge.deep.clone(a);
+const a = {x: 1, y: 2};
+const b = {x: {}, z: [1, 2, 3, 4]};
+const merged = merge(a, b, {clone: true});
+assert(merged.x!==b.x); // Object cloned
+assert(merged.z!==b.z); // Array cloned
 ```
 
-Merge source object over target object with custom filtering:
+
+**Applying filter while merge**
+
 ```js
-var a = {id: 1};
-var b = {name: 'John', surname: 'Wick'};
-var merged = merge.deep.filter(function(o,k,v){
-  return k === 'name';  
-})(target, source);
+const a = {x: 1, y: 2};
+const b = {x: {}, z: [1, 2, 3, 4]};
+const merged = merge(a, b, {filter: (src, key)=>key!=='z'});
+assert(!merged.z); // Z will not be merged
 ```
+
+
+**Copying descriptors**
+
+```javascript
+const b = {};
+Object.defineProperty(b, 'foo', {
+  enumerable: false
+});
+const merged = merge({}, b, {descriptor: true});
+assert.strictEqual(Object.getOwnPropertyDescriptor(merged, 'foo').enumerable, false);
+```
+
+**Copying getters and setters**
+
+```javascript
+const b = {
+  bar: 1,
+  get foo(){
+    return this.bar; 
+  }
+};
+const merged = merge({}, b, {descriptor: true});
+assert.strictEqual(merged.foo, 1);
+```
+
+
+**Copying function properties**
+
+```javascript
+const b = {
+  bar: 1,
+  getFoo(){
+    return this.bar; 
+  }
+};
+const merged = merge({}, b, {descriptor: true});
+assert.strictEqual(merged.getFoo(), 1);
+```
+
+
+## Merge.all()
+
+Performs merge with more than two objects.
+
+`merge.all(arrayOfObjects[, options])`
+
+- `arrayOfObjects:Array<object>`:
+- `options:object` 
+    - `deep:boolean` (optional): If true, it performs deep merge operation. **Default:** `false`
+    - `clone:boolean` (optional): If true, clones object properties rather than assigning references.  **Default:** `false`
+    - `descriptor:boolean`(optional): If true, copies property descriptors.  **Default:** `false`
+    - `filter:function` (optional): A callback function to test if source property will be merged to target.
+    - `arrayMerge:boolean|function` (optional): If true, it combines array values. It this is a function, result of call will be assigned to target.
+
 
 ## Node Compatibility
 
-  - node `>= 0.10`;
+  - node `>= 6.0`;
   
 ### License
 [MIT](LICENSE)
