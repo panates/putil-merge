@@ -170,21 +170,10 @@ describe('merge', function() {
         return ++this.bar;
       }
     };
-    let o = merge({}, a, {functions: true});
+    let o = merge({}, a);
     assert.strictEqual(a.getFoo(), 1);
     assert.strictEqual(o.getFoo(), 1);
     assert.strictEqual(o.getFoo(), 2);
-  });
-
-  it('should not copy functions if descriptor option is false', function() {
-    const a = {
-      bar: 0,
-      getFoo() {
-        return ++this.bar;
-      }
-    };
-    let o = merge({}, a, {});
-    assert.strictEqual(o.getFoo, undefined);
   });
 
   it('should do nothing if source = target', function() {
