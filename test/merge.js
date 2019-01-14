@@ -144,6 +144,18 @@ describe('merge', function() {
     assert.strictEqual(o.foo, 6);
   });
 
+  it('should only copy properties if options.adjunct is true', function() {
+    const a = {a: 1, b: '2'};
+    const b = {a: 2, c: 3};
+    let o = merge(a, b, {adjunct: true});
+    assert.deepStrictEqual(o, {
+          a: 1,
+          b: '2',
+          c: 3
+        }
+    );
+  });
+
   it('should copy functions', function() {
     const a = {
       bar: 0,
