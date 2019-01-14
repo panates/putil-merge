@@ -16,6 +16,12 @@ describe('merge', function() {
     });
   });
 
+  it('should ignore if source is null', function() {
+    const a = {};
+    const b = merge(a);
+    assert.strictEqual(b, a);
+  });
+
   it('should copy regular values to target', function() {
     const a = {a: 1, b: '2'};
     const b = {a: 2, c: 3};
