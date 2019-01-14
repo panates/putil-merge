@@ -1,7 +1,7 @@
 {
   "name": "putil-merge",
   "description": "Lightweight solution for merging multiple objects into one. Also it supports deep merge and deep clone",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "author": "Panates Ltd.",
   "contributors": [
     "Eray Hanoglu <e.hanoglu@panates.com>"
