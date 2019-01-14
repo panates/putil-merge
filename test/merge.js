@@ -169,7 +169,7 @@ describe('merge', function() {
         return ++this.bar;
       }
     };
-    let o = merge({}, a, {descriptor: true});
+    let o = merge({}, a, {functions: true});
     assert.strictEqual(a.getFoo(), 1);
     assert.strictEqual(o.getFoo(), 1);
     assert.strictEqual(o.getFoo(), 2);
