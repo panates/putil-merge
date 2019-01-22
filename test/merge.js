@@ -115,6 +115,15 @@ describe('merge', function() {
     assert.deepStrictEqual(o, {foo: ['a', 'b']});
   });
 
+  it('should copy symbol values to target', function() {
+    const foo = Symbol.for('sym');
+    const a = {};
+    const b = {foo};
+    let o = merge(a, b);
+    assert.deepStrictEqual(o, b);
+    assert.strictEqual(o.foo, b.foo);
+  });
+
   it('should copy descriptors', function() {
     const a = {};
     Object.defineProperty(a, 'foo', {
