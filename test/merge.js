@@ -160,10 +160,10 @@ describe('merge', function() {
     assert.strictEqual(o.foo, 6);
   });
 
-  it('should only copy properties if options.adjunct is true', function() {
+  it('should only copy properties if options.combine is true', function() {
     const a = {a: 1, b: '2'};
     const b = {a: 2, c: 3};
-    let o = merge(a, b, {adjunct: true});
+    let o = merge(a, b, {combine: true});
     assert.deepStrictEqual(o, {
           a: 1,
           b: '2',
