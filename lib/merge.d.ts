@@ -2,7 +2,7 @@ export as namespace mergeLib;
 
 export = merge;
 
-declare function merge(target: object, source: object, options: merge.IMergeOptions): object;
+declare function merge(target: object, source: object, options?: merge.IMergeOptions): object;
 
 declare namespace merge {
 
@@ -24,7 +24,7 @@ declare namespace merge {
 
     }
 
-    export function all(object: Array<object>, options: IMergeOptions): object;
+    export function all(object: Array<object>, options?: IMergeOptions): object;
 
     export function arrayCombine(target, source: Array<any>): Array<any>;
 
