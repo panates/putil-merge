@@ -112,7 +112,7 @@ Performs merge with more than two objects.
 - `options:object` 
     - `deep:boolean` (optional): If true, it performs deep merge operation. **Default:** `false`
     - `clone:boolean` (optional): If true, clones object properties rather than assigning references.  **Default:** `false`
-    - `adjunct:boolean`(optional): If true, it copies only non-existing properties. **Default:** `false`
+    - `combine:boolean`(optional): If true, it copies only non-existing properties. **Default:** `false`
     - `descriptor:boolean`(optional): If true, copies property descriptors.  **Default:** `false`
     - `filter:function` (optional): A callback function to test if source property will be merged to target.
     - `arrayMerge:boolean|function` (optional): If true, it combines array values. It this is a function, result of call will be assigned to target.
