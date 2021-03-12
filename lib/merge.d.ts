@@ -20,7 +20,7 @@ declare namespace merge {
         combine?: boolean;
         descriptor?: boolean;
         filter?: FilterCallback;
-        arrayMerge?: ArrayMergeCallback
+        arrayMerge?: boolean|ArrayMergeCallback
 
     }
 
