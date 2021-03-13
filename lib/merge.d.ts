@@ -7,7 +7,7 @@ declare function merge(target: object, source: object, options?: merge.IMergeOpt
 declare namespace merge {
 
     interface ArrayMergeCallback {
-        (trgVal, srcVal: any): boolean;
+        (trgVal, srcVal: any): any[];
     }
 
     interface FilterCallback {
@@ -20,8 +20,7 @@ declare namespace merge {
         combine?: boolean;
         descriptor?: boolean;
         filter?: FilterCallback;
-        arrayMerge?: ArrayMergeCallback
-
+        arrayMerge?: boolean|ArrayMergeCallback;
     }
 
     export function all(object: Array<object>, options?: IMergeOptions): object;
