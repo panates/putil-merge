@@ -23,14 +23,15 @@ describe('merge', function() {
   });
 
   it('should copy regular values to target', function() {
-    const a = {a: 1, b: '2'};
+    const a = {a: 1, b: '2', e: 5};
     const b = {a: 2, c: 3, d: null, e: undefined};
     let o = merge(a, b);
     assert.deepStrictEqual(o, {
           a: 2,
           b: '2',
           c: 3,
-          d: null
+          d: null,
+          e: 5
         }
     );
   });
