@@ -237,4 +237,11 @@ describe('merge', function() {
     );
   });
 
+  it('should prevent Prototype Pollution vulnerability', function() {
+    const payload = JSON.parse('{"__proto__":{"polluted":"Yes! Its Polluted"}}');
+    const obj = {};
+    merge(obj, payload, {deep: true});
+    assert.strictEqual(obj.polluted, undefined);
+  });
+
 });
