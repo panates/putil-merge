@@ -55,6 +55,18 @@ describe('merge', function() {
     );
   });
 
+  it('should function/class values to target', function() {
+    const a = {a: 1, b: 2};
+    const b = {c: Boolean};
+    let o = merge(a, b);
+    assert.deepStrictEqual(o, {
+          a: 1,
+          b: 2,
+          c: Boolean
+        }
+    );
+  });
+
   it('should clone object values to target', function() {
     const a = {a: 1, b: '2'};
     const b = {a: '1', c: {foo: 1}};
@@ -77,6 +89,17 @@ describe('merge', function() {
           a: '1',
           b: '2',
           c: {fop: 1, foo: {bar: {baz: 1}}}
+        }
+    );
+  });
+
+  it('should deep clone function/class values to target', function() {
+    const a = {a: 1, b: 2, c: {a: Boolean}};
+    let o = merge({}, a, {deep: true});
+    assert.deepStrictEqual(o, {
+          a: 1,
+          b: 2,
+          c: {a: Boolean}
         }
     );
   });
