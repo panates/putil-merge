@@ -25,6 +25,6 @@ declare namespace merge {
 
     export function all(object: Array<object>, options?: IMergeOptions): object;
 
-    export function arrayCombine(target, source: Array<any>): Array<any>;
+    export function arrayCombine(target: any, source: Array<any>): Array<any>;
 
 }
