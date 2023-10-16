@@ -6,25 +6,25 @@ declare function merge(target: object, source: object, options?: merge.IMergeOpt
 
 declare namespace merge {
 
-    interface ArrayMergeCallback {
-        (trgVal: any, srcVal: any): any[];
-    }
+  interface ArrayMergeCallback {
+    (trgVal: any, srcVal: any): any[];
+  }
 
-    interface FilterCallback {
-        (source: object, key: string): any;
-    }
+  interface FilterCallback {
+    (source: object, key: string): any;
+  }
 
-    export interface IMergeOptions {
-        deep?: boolean;
-        clone?: boolean;
-        combine?: boolean;
-        descriptor?: boolean;
-        filter?: FilterCallback;
-        arrayMerge?: boolean|ArrayMergeCallback;
-    }
+  export interface IMergeOptions {
+    deep?: boolean | ((v: any) => boolean);
+    clone?: boolean;
+    combine?: boolean;
+    descriptor?: boolean;
+    filter?: FilterCallback;
+    arrayMerge?: boolean | ArrayMergeCallback;
+  }
 
-    export function all(object: Array<object>, options?: IMergeOptions): object;
+  export function all(object: Array<object>, options?: IMergeOptions): object;
 
-    export function arrayCombine(target: any, source: Array<any>): Array<any>;
+  export function arrayCombine(target: any, source: Array<any>): Array<any>;
 
 }
