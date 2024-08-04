@@ -19,12 +19,12 @@
     "object"
   ],
   "devDependencies": {
-    "@types/mocha": "^10.0.2",
-    "@types/node": "^20.8.6",
-    "eslint": "^8.51.0",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.14",
+    "eslint": "^8.57.0",
     "eslint-config-google": "^0.14.0",
-    "mocha": "^10.2.0",
-    "nyc": "^15.1.0"
+    "mocha": "^10.7.0",
+    "nyc": "^17.0.0"
   },
   "engines": {
     "node": ">= 10.0"
