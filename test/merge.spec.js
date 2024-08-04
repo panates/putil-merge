@@ -209,6 +209,14 @@ describe('merge', function() {
     assert.strictEqual(o.getFoo(), 2);
   });
 
+  it('should copy undefined values if "copyUndefined" option enabled', function() {
+    const a = {
+      field1: undefined
+    };
+    let o = merge({}, a, {copyUndefined: true});
+    assert.deepStrictEqual(Object.getOwnPropertyNames(o), ['field1']);
+  });
+
   it('should do nothing if source = target', function() {
     const a = {};
     const o = merge(a, a);

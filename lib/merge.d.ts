@@ -18,9 +18,16 @@ declare namespace merge {
     deep?: boolean | ((v: any) => boolean);
     clone?: boolean;
     combine?: boolean;
+    /**
+     * Copies field descriptors
+     */
     descriptor?: boolean;
     filter?: FilterCallback;
     arrayMerge?: boolean | ArrayMergeCallback;
+    /**
+     * Copy fields which values are "undefined"
+     */
+    copyUndefined?: boolean;
   }
 
   export function all(object: Array<object>, options?: IMergeOptions): object;
